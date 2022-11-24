@@ -107,6 +107,7 @@ public:
 
     // ===== Members functions that are platform-specific
     CHIP_ERROR GetEnableKey(MutableByteSpan & enableKey);
+    CHIP_ERROR GetUserData(char * buf, size_t bufSize);
 
 private:
     static constexpr uint16_t kFactoryDataPartitionSize    = PM_FACTORY_DATA_SIZE;

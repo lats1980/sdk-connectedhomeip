@@ -333,6 +333,18 @@ CHIP_ERROR FactoryDataProvider<FlashFactoryData>::GetEnableKey(MutableByteSpan &
     return CHIP_NO_ERROR;
 }
 
+template <class FlashFactoryData>
+CHIP_ERROR FactoryDataProvider<FlashFactoryData>::GetUserData(char * buf, size_t bufSize)
+{
+    ReturnErrorCodeIf(bufSize < mFactoryData.user.len + 1, CHIP_ERROR_BUFFER_TOO_SMALL);
+    ReturnErrorCodeIf(!mFactoryData.user.data, CHIP_ERROR_PERSISTED_STORAGE_VALUE_NOT_FOUND);
+
+    memcpy(buf, mFactoryData.user.data, mFactoryData.user.len);
+    buf[mFactoryData.user.len] = 0;
+
+    return CHIP_NO_ERROR;
+}
+
 // Fully instantiate the template class in whatever compilation unit includes this file.
 template class FactoryDataProvider<InternalFlashFactoryData>;
 template class FactoryDataProvider<ExternalFlashFactoryData>;

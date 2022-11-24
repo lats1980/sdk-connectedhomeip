@@ -141,7 +141,7 @@
         },
         "user": {
             "description": "A user-specific additional data which should be added to factory data. This should be a Json format.",
-            "type": "object"
+            "type": "string"
         }
     }
 }
